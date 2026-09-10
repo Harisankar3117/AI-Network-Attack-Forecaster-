@@ -27,9 +27,9 @@ def model_status():
 @router.get("/forecast/{scenario}", response_model=ForecastResponse)
 def forecast_scenario(scenario: str, k_steps: int = 5):
     scenario_files = {
-        "wednesday": "data/processed/CIC-IDS2018/Wednesday-14-02-2018_TrafficForML_CICFlowMeter_cleaned.csv",
-        "friday": "data/processed/CIC-IDS2018/Friday-16-02-2018_TrafficForML_CICFlowMeter_cleaned.csv",
-        "march1": "data/processed/CIC-IDS2018/Thursday-01-03-2018_TrafficForML_CICFlowMeter_cleaned.csv"
+        "wednesday": "data/demo_scenarios/wednesday.csv",
+        "friday": "data/demo_scenarios/friday.csv",
+        "march1": "data/demo_scenarios/march1.csv"
     }
     
     if scenario.lower() not in scenario_files:

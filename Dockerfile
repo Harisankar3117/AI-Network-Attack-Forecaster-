@@ -10,8 +10,9 @@ RUN npm run build
 FROM python:3.10-slim
 WORKDIR /app
 
-# Install CPU-only PyTorch first to prevent Render Free Tier Out-Of-Memory (OOM) crashes
-RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# Install CPU-only PyTorch first. 
+# We use PyTorch index as primary to get the CPU version, and PyPI as extra to get its dependencies (typing-extensions).
+RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
 
 # Copy requirements and install the rest of dependencies
 COPY requirements.txt .

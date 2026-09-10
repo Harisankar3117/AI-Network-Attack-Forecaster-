@@ -1,5 +1,5 @@
 # Stage 1: Build the React Application
-FROM node:18-alpine as frontend-builder
+FROM node:20-alpine as frontend-builder
 WORKDIR /app/dashboard
 COPY dashboard/package*.json ./
 RUN npm install
@@ -11,7 +11,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Install CPU-only PyTorch first to prevent Render Free Tier Out-Of-Memory (OOM) crashes
-RUN pip install --no-cache-dir torch==2.10.0+cpu torchvision==0.15.0+cpu --extra-index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
 # Copy requirements and install the rest of dependencies
 COPY requirements.txt .

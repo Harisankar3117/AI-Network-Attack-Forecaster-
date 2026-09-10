@@ -1,7 +1,7 @@
-const API_BASE = 'http://localhost:8000/api/v1';
+const API_BASE = import.meta.env.VITE_API_BASE || '/api/v1';
 
 export const fetchSystemHealth = async () => {
-    const res = await fetch(`http://localhost:8000/health`);
+    const res = await fetch(`/health`);
     if (!res.ok) throw new Error('Failed to fetch health');
     return res.json();
 };
